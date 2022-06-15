@@ -27,7 +27,6 @@ class ViewController: UIViewController {
 extension ViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "coinCell") as! CoinTableViewCell
-        print(coins.count)
         cell.coinName.text = coins[indexPath.row].name
         cell.coinPrice.text = coins[indexPath.row].price
         return cell
@@ -38,6 +37,7 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource{
 }
 extension ViewController: ViewModelDelegate {
     func didCoinDataFetch(_ data: [CoinTableViewCellViewModel]) {
+        //viewModels to coin array
         self.coins = data
         DispatchQueue.main.async {
             self.tableView.reloadData()
